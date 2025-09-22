@@ -1,0 +1,58 @@
+public class Alumno {
+    // Atributos
+    private String nombre;
+    private double[] calificaciones; // Array para almacenar 5 calificaciones
+
+    // Constructor
+    public Alumno(String nombre, double[] calificaciones) {
+        this.nombre = nombre;
+        this.calificaciones = calificaciones;
+    }
+
+    // Método para calcular el promedio
+    public double calcularPromedio() {
+        double suma = 0;
+        for (double calificacion : calificaciones) {
+            suma += calificacion;
+        }
+        return suma / calificaciones.length;//operación para calcular promedio
+    }
+
+    // Método para obtener la calificación final según el rango
+    public char obtenerCalificacionFinal(double promedio) {
+        if (promedio <= 50) {
+            return 'F';
+        } else if (promedio <= 60) {
+            return 'E';
+        } else if (promedio <= 70) {
+            return 'D';
+        } else if (promedio <= 80) {
+            return 'C';
+        } else if (promedio <= 90) {
+            return 'B';
+        } else {
+            return 'A';
+        }
+    }
+
+    // Método que imprime los resultados
+    public void mostrarResultados(String nombre, double promedio, char calificacionFinal) {
+        System.out.println("Nombre del estudiante: " + nombre);
+        for (int i = 0; i < calificaciones.length; i++) {
+            System.out.println("Calificación " + (i + 1) + ": " + calificaciones[i]);
+        }
+        System.out.println("Promedio: " + promedio);
+        System.out.println("Calificación: " + calificacionFinal);
+    }
+
+    // Método principal
+    public static void main(String[] args) {
+        double[] notas = {95, 100, 88, 92, 88};
+        Alumno alumno = new Alumno("Irene Pachecano", notas);
+
+        double promedio = alumno.calcularPromedio();
+        char calificacion = alumno.obtenerCalificacionFinal(promedio);
+
+        alumno.mostrarResultados(alumno.nombre, promedio, calificacion);
+    }
+}
